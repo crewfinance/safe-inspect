@@ -1,5 +1,6 @@
 # Safe Inspect
 
+[![Build Status](https://github.com/crewfinance/safe-inspect/workflows/CI/badge.svg)](https://github.com/crewfinance/safe-inspect/actions)
 [![Version](https://img.shields.io/hexpm/v/safe_inspect.svg)](https://hex.pm/packages/safe_inspect)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/safe_inspect/readme.html)
 [![License](https://img.shields.io/badge/License-Apache-blue.svg)](https://opensource.org/license/apache-2-0)
