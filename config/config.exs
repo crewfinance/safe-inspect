@@ -1,0 +1,35 @@
+import Config
+
+# Default config for tests
+config :safe_inspect,
+  redacted_keys: [
+    :access_token,
+    :account_number,
+    :address,
+    :bank_account_number,
+    :birth_date,
+    :birth_day,
+    :card_number,
+    :credit_card_number,
+    :credit_score,
+    :date_of_birth,
+    :dob,
+    :driver_license_number,
+    :email,
+    :ethnicity,
+    :first_name,
+    :full_name,
+    :gender,
+    :ip_address,
+    :last_name,
+    :nationality,
+    :passport,
+    :passport_number,
+    :password,
+    :phone,
+    :phone_number,
+    :salary,
+    :social_security_number,
+    :ssn,
+    :username
+  ]
