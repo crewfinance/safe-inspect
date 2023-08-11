@@ -4,7 +4,7 @@ defmodule SafeInspect.MixProject do
   def project do
     [
       app: :safe_inspect,
-      version: "1.0.1",
+      version: "1.0.2",
       elixir: "~> 1.15",
       deps: deps(),
       description: description(),

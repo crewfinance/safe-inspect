@@ -42,7 +42,7 @@ Your logs will look something like this, depending on your config:
 
 ## Configuration
 
-In you `config/config.exs` add all the keys that you want to redact. Here's an example:
+In your `config/config.exs` add all the keys that you want to redact. Here's an example:
 
 ```elixir
 config :safe_inspect,
