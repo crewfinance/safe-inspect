@@ -28,7 +28,7 @@ with foo <- my_func1(),
   {:ok, bar}
 else
   err ->
-    # No fear of accidentally logging sensitive data when using the special `inspect!`
+    # No fear of accidentally logging sensitive data when using the safe `inspect!`
     Logger.error("Something bad happened: #{inspect!(error)}")
 end
 ```
