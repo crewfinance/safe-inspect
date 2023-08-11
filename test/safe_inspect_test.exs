@@ -28,7 +28,7 @@ defmodule SafeInspectTest do
   test "maps" do
     assert inspect!(%{birth_date: "01211995"}) == "%{birth_date: :redacted}"
     assert inspect!(%{"birthDate" => "01211995"}) == "%{\"birthDate\" => :redacted}"
-    assert inspect!(%{birth_date: "01211995", foo: :bar}) == "%{birth_date: :redacted, foo: :bar}"
+    assert inspect!(%{birth_date: "01211995", foo: :bar}) ==  "%{foo: :bar, birth_date: :redacted}"
 
     assert inspect!(%{"birthDate" => "01211995", foo: :bar}) ==
              "%{:foo => :bar, \"birthDate\" => :redacted}"
