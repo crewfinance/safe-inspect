@@ -4,7 +4,7 @@ defmodule SafeInspect.MixProject do
   def project do
     [
       app: :safe_inspect,
-      version: "1.0.0",
+      version: "1.0.1",
       elixir: "~> 1.15",
       deps: deps(),
       description: description(),
@@ -13,7 +13,7 @@ defmodule SafeInspect.MixProject do
       source_url: "https://github.com/crewfinance/safe-inspect",
       homepage_url: "https://trycrew.com",
       docs: [
-        main: "SafeInspect",
+        main: "readme",
         extras: ["README.md"]
       ]
     ]
