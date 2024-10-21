@@ -17,19 +17,29 @@ defmodule SafeInspect do
   end
 
   defp clean(struct) when is_struct(struct) do
-    struct
-    |> Map.from_struct()
-    |> clean()
-    |> Map.put(:__struct__, struct.__struct__)
+    cleaned =
+      struct
+      |> Map.from_struct()
+      |> clean()
+      |> Map.put(:__struct__, struct.__struct__)
+
+    if struct.__struct__ == Ecto.Changeset do
+      Map.put(cleaned, :errors, struct.errors)
+    else
+      cleaned
+    end
   end
 
   defp clean(map) when is_map(map) do
     map
-    |> Enum.map(fn {k, v} ->
-      if k_to_string(k) in @all_redacted_keys, do: {k, :redacted}, else: {k, clean(v)}
+    |> Enum.map(fn
+      {k, nil} -> {k, nil}
+      {k, v} -> if k_to_string(k) in @all_redacted_keys, do: {k, :redacted}, else: {k, clean(v)}
     end)
     |> Enum.into(%{})
   end
+
+  defp clean({k, nil}) when is_atom(k) or is_binary(k), do: {k, nil}
 
   defp clean({k, v}) when is_atom(k) or is_binary(k) do
     if k_to_string(k) in @all_redacted_keys do
