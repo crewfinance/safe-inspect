@@ -69,3 +69,17 @@ config :safe_inspect,
     :username
   ]
 ```
+
+You can also pass through any options to Elixir's `Kernel.inspect/2` on every call
+via `:inspect_opts`. Options provided at the call site override these defaults:
+
+```elixir
+config :safe_inspect,
+  inspect_opts: [limit: :infinity, printable_limit: :infinity]
+
+# Uses the config defaults
+SafeInspect.inspect!(value)
+
+# `limit: 10` overrides the config's `limit: :infinity`; `printable_limit` still applies.
+SafeInspect.inspect!(value, limit: 10)
+```
