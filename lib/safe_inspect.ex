@@ -11,9 +11,11 @@ defmodule SafeInspect do
                        Enum.map(@redacted_keys, &String.replace(&1, "_", "-")) ++
                        Enum.map(@redacted_keys, &String.replace(&1, "_", ""))
 
+  @inspect_opts Application.compile_env(:safe_inspect, :inspect_opts, [])
+
   @spec inspect!(any(), keyword()) :: String.t()
   def inspect!(value, opts \\ []) do
-    inspect(clean(value), opts)
+    inspect(clean(value), Keyword.merge(@inspect_opts, opts))
   end
 
   defp clean(struct) when is_struct(struct) do

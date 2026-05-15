@@ -46,6 +46,28 @@ defmodule SafeInspectTest do
     assert inspect!(birth_date: nil) == "[birth_date: nil]"
   end
 
+  test "applies inspect_opts from config by default" do
+    # Default Elixir limit is 50; test config sets 100. Lists with >50 items prove config applied.
+    list = Enum.to_list(1..75)
+    rendered = inspect!(list)
+    assert String.contains?(rendered, "75")
+    refute String.contains?(rendered, "...")
+  end
+
+  test "call opts override config inspect_opts" do
+    list = Enum.to_list(1..75)
+    assert inspect!(list, limit: 3) == "[1, 2, 3, ...]"
+  end
+
+  test "call opts merged with config inspect_opts when keys differ" do
+    # Config sets limit: 100. Passing an unrelated call opt should not drop the config limit;
+    # a 75-item list would truncate under Elixir's default limit of 50.
+    list = Enum.to_list(1..75)
+    rendered = inspect!(list, printable_limit: 50)
+    assert String.contains?(rendered, "75")
+    refute String.contains?(rendered, "...")
+  end
+
   test "changeset" do
     assert inspect!(%{
              __struct__: Ecto.Changeset,
